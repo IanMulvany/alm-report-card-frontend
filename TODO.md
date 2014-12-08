@@ -1,0 +1,12 @@
+- implement $('.typeahead').typeahead('val', myVal); in order to populate link for getting reprot
+- centre template
+- add an about page 
+- add a sources page
+- rename the name of the sources in the js
+- create a proper parent template for our pages 
+- put into version control 
+- design a report based on the api from Martin
+- add a db layer in order to allow myself to store results of queries
+- provide a page of popular publisher results
+- provide a wall of shame 
+
