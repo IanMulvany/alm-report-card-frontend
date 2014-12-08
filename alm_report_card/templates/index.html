@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/typeahead.bundle.js"></script>
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="/static/css/examples.css" rel="stylesheet">
+  
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+</html>
+
+<body>
+<title>ALM REPORT Generator</title>
+
+<h1>ALM Report Generator</h1>
+<h3>select a publisher</h3>
+
+
+<div id="scrollable-dropdown-menu">
+<input class="typeahead" type="text" placeholder="Publisher, e.g. eLife">
+</div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href="/reports/host_id/234242">get me the report!!</a></button>
+</div>
+</body>
+
+<script type="text/javascript">
+	var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substrRegex;
+ 
+    // an array that will be populated with substring matches
+    matches = [];
+ 
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+ 
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        // the typeahead jQuery plugin expects suggestions to a
+        // JavaScript object, refer to typeahead docs for more info
+        matches.push({ value: str });
+      }
+    });
+ 
+    cb(matches);
+  };
+};
+ 
+var publishers = {{ names|safe }};
+ 
+$('#scrollable-dropdown-menu .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'states',
+  displayKey: 'value',
+  source: substringMatcher(publishers)
+});
+</script>
