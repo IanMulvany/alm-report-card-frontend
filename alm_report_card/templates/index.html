@@ -1,34 +1,44 @@
-<!doctype html>
+{% extends "base.html" %}
+{% block title %}ALM REPORT Generator{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 
-<html lang="en">
-  <head>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-    <script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/typeahead.bundle.js"></script>
-	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="/static/css/examples.css" rel="stylesheet">
-  
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-</html>
-
-<body>
-<title>ALM REPORT Generator</title>
-
-<h1>ALM Report Generator</h1>
+ <div class="jumbotron">
+   <div class="container">
+        <h1>ALM Report Generator</h1>
+        <p>Find out how good your publisher is at making your papers
+        be ALMable.</p>
+   </div>
+ </div>
 <h3>select a publisher</h3>
-
 
 <div id="scrollable-dropdown-menu">
 <input class="typeahead" type="text" placeholder="Publisher, e.g. eLife">
 </div>
 
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default"><a href="/reports/host_id/234242">get me the report!!</a></button>
+<div class="btn-group" id="PubLinkId" role="group" aria-label="...">
+  <a class="btn btn-success" href="/reports/host_id/234242">get me the report!!</a>
 </div>
-</body>
+
+<div class="btn-group">
+    <a class="btn btn-xs btn-success" href="#">Approve</a>
+    <a class="btn btn-xs btn-danger" href="#">Deny</a>
+</div>
+<br>
+<div class="btn-group">
+    <a class="btn btn-sm btn-success" href="#">Approve</a>
+    <a class="btn btn-sm btn-danger" href="#">Deny</a>
+</div>
+<br>
+<div class="btn-group">
+    <a class="btn btn-success" href="#">Approve</a>
+    <a class="btn btn-danger" href="#">Deny</a>
+</div>
+
+<button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+<button class="btn btn-large btn-block" type="button">Block level button</button>
 
 <script type="text/javascript">
 	var substringMatcher = function(strs) {
@@ -68,3 +78,14 @@ $('#scrollable-dropdown-menu .typeahead').typeahead({
   source: substringMatcher(publishers)
 });
 </script>
+
+<script type="text/javascript">
+	name_id_map = {"elife": 123,
+					"evil Elsecier" : 666};
+
+	var myVal = $('#scrollable-dropdown-menu .typeahead').typeahead('val');
+	console.log(myVal);
+	// $('#PubLinkId')()
+</script>
+
+{% endblock %}

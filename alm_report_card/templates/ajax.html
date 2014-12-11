@@ -1,0 +1,54 @@
+
+
+
+{% extends "base.html" %}
+{% block title %}About the ALM report generator{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h1>This is a sampe ajax query</h1>
+
+<div id="holder">
+	hello 
+</div>
+
+
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+        a: $('input[name="a"]').val(),
+        b: $('input[name="b"]').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+<script type=text/javascript>
+  $(function() {
+	    $('#blurb_container').bind('click', function() {
+	      $.getJSON($SCRIPT_ROOT + '/_blurb', 
+		   function(data) {
+	        $("#blurb_here").text(data.result);
+		      });
+	      return false;
+    });
+});
+</script>
+
+
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>
+
+<p><div id=blurb_container>hi <span id=blurb_here>!</span></div>
+
+{% endblock %}
+
