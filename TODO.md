@@ -9,4 +9,5 @@
 - add a db layer in order to allow myself to store results of queries
 - provide a page of popular publisher results
 - provide a wall of shame 
+- use skeleton for the layout
 
